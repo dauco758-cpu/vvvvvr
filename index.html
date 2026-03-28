@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cool Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white font-sans">  <!-- Navbar -->  <header class="flex justify-between items-center p-5 bg-gray-800 shadow-lg">
+    <h1 class="text-2xl font-bold">MyBrand</h1>
+    <nav class="space-x-6">
+      <a href="#" class="hover:text-blue-400">Home</a>
+      <a href="#" class="hover:text-blue-400">About</a>
+      <a href="#" class="hover:text-blue-400">Contact</a>
+    </nav>
+  </header>  <!-- Hero Section -->  <section class="text-center py-20">
+    <h2 class="text-5xl font-bold mb-4">Welcome to My Website 🚀</h2>
+    <p class="text-gray-400 mb-6">Trang web xịn sò do bạn tạo ra!</p>
+    <button class="bg-blue-500 px-6 py-3 rounded-2xl hover:bg-blue-600 transition">Get Started</button>
+  </section>  <!-- Features -->  <section class="grid md:grid-cols-3 gap-6 p-10">
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+      <h3 class="text-xl font-bold mb-2">⚡ Nhanh</h3>
+      <p class="text-gray-400">Tối ưu hiệu năng cực tốt.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+      <h3 class="text-xl font-bold mb-2">🎨 Đẹp</h3>
+      <p class="text-gray-400">Giao diện hiện đại, chuyên nghiệp.</p>
+    </div>
+    <div class="bg-gray-800 p-6 rounded-2xl shadow-lg">
+      <h3 class="text-xl font-bold mb-2">🔒 Bảo mật</h3>
+      <p class="text-gray-400">An toàn và đáng tin cậy.</p>
+    </div>
+  </section>  <!-- Footer -->  <footer class="text-center p-5 bg-gray-800 mt-10">
+    <p class="text-gray-500">© 2026 MyBrand. All rights reserved.</p>
+  </footer></body>
+</html>
+<!DOCTYPE html><html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Auth UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 320px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #667eea;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #5a67d8;
+    }
+    .link {
+      text-align: center;
+      margin-top: 10px;
+      cursor: pointer;
+      color: #667eea;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body><div class="container">  <!-- LOGIN -->  <div id="login">
+    <h2>Đăng nhập</h2>
+    <input type="text" id="loginUser" placeholder="Tên đăng nhập">
+    <input type="password" id="loginPass" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <div class="link" onclick="show('register')">Tạo tài khoản</div>
+    <div class="link" onclick="show('forgot')">Quên mật khẩu?</div>
+  </div>  <!-- REGISTER -->  <div id="register" class="hidden">
+    <h2>Đăng ký</h2>
+    <input type="text" id="regUser" placeholder="Tên đăng nhập">
+    <input type="password" id="regPass" placeholder="Mật khẩu">
+    <button onclick="register()">Đăng ký</button>
+    <div class="link" onclick="show('login')">Đã có tài khoản?</div>
+  </div>  <!-- FORGOT -->  <div id="forgot" class="hidden">
+    <h2>Quên mật khẩu</h2>
+    <input type="text" id="forgotUser" placeholder="Nhập username">
+    <button onclick="forgot()">Lấy lại mật khẩu</button>
+    <div class="link" onclick="show('login')">Quay lại đăng nhập</div>
+  </div></div><script>
+  function show(id) {
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('register').classList.add('hidden');
+    document.getElementById('forgot').classList.add('hidden');
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function register() {
+    const user = document.getElementById('regUser').value;
+    const pass = document.getElementById('regPass').value;
+    if(!user || !pass) return alert('Nhập đủ thông tin');
+    localStorage.setItem(user, pass);
+    alert('Đăng ký thành công');
+    show('login');
+  }
+
+  function login() {
+    const user = document.getElementById('loginUser').value;
+    const pass = document.getElementById('loginPass').value;
+    const saved = localStorage.getItem(user);
